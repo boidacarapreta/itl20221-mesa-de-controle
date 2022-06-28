@@ -1,22 +1,11 @@
-input.onButtonPressed(Button.A, function () {
-    bairro = bairro + 1
-    if (bairro >= 10) {
-        bairro = 1
-    }
-    basic.showString("" + (bairro))
-})
-input.onButtonPressed(Button.B, function () {
-    if (bairro > 0) {
-        radio.sendNumber(bairro)
-        basic.showIcon(IconNames.Yes)
-    } else {
-        basic.showIcon(IconNames.No)
-    }
-    basic.pause(1000)
-    basic.showString("" + (bairro))
-})
-let bairro = 0
+let raspberrypi = ""
+serial.setBaudRate(BaudRate.BaudRate115200)
 let canal = 100
-bairro = 0
 radio.setGroup(canal)
+let bairro = 0
 basic.showString("" + (bairro))
+basic.forever(function () {
+    raspberrypi = serial.readLine()
+    radio.sendString(raspberrypi)
+    basic.showString(raspberrypi)
+})
