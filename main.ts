@@ -5,6 +5,6 @@ radio.setGroup(canal)
 basic.showIcon(IconNames.Happy)
 basic.forever(function () {
     raspberrypi = serial.readLine()
-    radio.sendString("" + (parseFloat(raspberrypi)))
+    radio.sendNumber(parseFloat(raspberrypi))
     basic.showString(raspberrypi)
 })
